@@ -44,6 +44,7 @@ impl Game {
     pub fn new(window: WindowData) -> App {
 
         file_setup!();
+        println!("is this actually updating?");
 
         let mut app = App::new();
 
