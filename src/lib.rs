@@ -1,3 +1,5 @@
+pub mod components;
+mod systems;
 
 use bevy::prelude::*;
 
@@ -24,7 +26,10 @@ pub struct Game;
 
 impl Game {
     pub fn new(window: WindowData) -> App {
-        let app = App::new();
+        let mut app = App::new();
+
+        Game::file_setup();
+
         App::new()
             .add_plugins(
                 DefaultPlugins
@@ -44,6 +49,23 @@ impl Game {
                     })
                     .build(),
             );
-        app
+        app.add_system(systems::upd_lifetimes);
+        return app;
+    }
+
+    #[cfg(debug_assertions)]
+    fn file_setup() {
+        use std::path::Path;
+        use std::fs;
+
+        let path: &Path = Path::new("assets");
+        if path.is_dir() {
+            println!("We have assets lets go!");
+        } else {
+            let result = fs::create_dir("assets");
+            result.ok();
+            println!("made assets dir!");
+        }
+
     }
 }
