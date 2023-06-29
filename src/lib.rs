@@ -20,39 +20,26 @@ impl Default for WindowData {
     }
 }
 
-pub struct Game {
-    app: App,
-}
-
-impl Game {
-    pub fn new(window: WindowData) -> Game {
-        let mut app = App::new();
-        app
-            .add_plugins(
-                DefaultPlugins
-                    .set(ImagePlugin::default_nearest())
-                    .set(AssetPlugin {
-                        watch_for_changes: true,
+pub fn new_game(window: WindowData) -> App {
+    let app = App::new();
+    App::new()
+        .add_plugins(
+            DefaultPlugins
+                .set(ImagePlugin::default_nearest())
+                .set(AssetPlugin {
+                    watch_for_changes: true,
+                    ..default()
+                })
+                .set(WindowPlugin {
+                    primary_window: Some(Window {
+                        title: window.title.into(),
+                        resolution: (window.width, window.height).into(),
+                        resizable: window.resizeable,
                         ..default()
-                    })
-                    .set(WindowPlugin {
-                        primary_window: Some(Window {
-                            title: window.title.into(),
-                            resolution: (window.width, window.height).into(),
-                            resizable: window.resizeable,
-                            ..default()
-                        }),
-                        ..default()
-                    })
-                    .build(),
-            );
-
-        Game {
-            app: app,
-        }
-    }
-
-    pub fn run(&mut self) {
-        self.app.run();
-    }
+                    }),
+                    ..default()
+                })
+                .build(),
+        );
+     app
 }

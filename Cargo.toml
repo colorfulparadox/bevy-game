@@ -10,3 +10,14 @@ repository = "https://github.com/colorfulparadox/bevy-game"
 [dependencies]
 bevy = "0.10.1"
 
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+
+[profile.release.package."*"]
+opt-level = 3
