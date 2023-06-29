@@ -2,8 +2,11 @@
 name = "bevy-game"
 version = "0.1.0"
 edition = "2021"
+readme = "README.md"
+repository = "https://github.com/colorfulparadox/bevy-game"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 bevy = "0.10.1"
+
