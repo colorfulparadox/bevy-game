@@ -24,12 +24,26 @@ impl Default for WindowData {
 
 pub struct Game;
 
+
+#[cfg(debug_assertions)]
+macro_rules! file_setup {
+    ($( $args:expr ),*) => { 
+        use std::path::Path;
+        use std::fs;     
+        println!("make file!");
+        let path: &Path = Path::new("assets");
+        if !path.is_dir() {
+            let result = fs::create_dir("assets");
+            result.ok();
+        }   
+     }
+}
+
 impl Game {
 
     pub fn new(window: WindowData) -> App {
 
-        #[cfg(debug_assertions)]
-        Game::file_setup();
+        file_setup!();
 
         let mut app = App::new();
 
@@ -56,7 +70,7 @@ impl Game {
         return app;
     }
 
-    //#[cfg(debug_assertions)]
+    /*#[cfg(debug_assertions)]
     pub fn file_setup() {
         use std::path::Path;
         use std::fs;
@@ -71,4 +85,5 @@ impl Game {
         let result = fs::create_dir("assets");
         result.ok();
     }
+    */
 }
