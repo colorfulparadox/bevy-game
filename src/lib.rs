@@ -31,6 +31,10 @@ impl Game {
             .add_plugins(
                 DefaultPlugins
                     .set(ImagePlugin::default_nearest())
+                    .set(AssetPlugin {
+                        watch_for_changes: true,
+                        ..default()
+                    })
                     .set(WindowPlugin {
                         primary_window: Some(Window {
                             title: window.title.into(),
