@@ -51,7 +51,7 @@ impl Game {
         return app;
     }
 
-    #[cfg(debug_assertions)]
+    //#[cfg(debug_assertions)]
     pub fn file_setup() {
         use std::path::Path;
         use std::fs;
