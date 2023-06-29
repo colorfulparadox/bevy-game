@@ -28,8 +28,6 @@ impl Game {
     pub fn new(window: WindowData) -> App {
         let mut app = App::new();
 
-        Game::file_setup();
-
         App::new()
             .add_plugins(
                 DefaultPlugins
@@ -54,9 +52,11 @@ impl Game {
     }
 
     #[cfg(debug_assertions)]
-    fn file_setup() {
+    pub fn file_setup() {
         use std::path::Path;
         use std::fs;
+        
+        println!("make file!");
 
         let path: &Path = Path::new("assets");
         if path.is_dir() {
