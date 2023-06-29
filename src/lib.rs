@@ -24,13 +24,14 @@ impl Default for WindowData {
 
 pub struct Game;
 
+#[cfg(debug_assertions)]
+use colored::Colorize;
 
 #[cfg(debug_assertions)]
 macro_rules! file_setup {
-    ($( $args:expr ),*) => { 
+    () => { 
         use std::path::Path;
         use std::fs;     
-        println!("make file!");
         let path: &Path = Path::new("assets");
         if !path.is_dir() {
             let result = fs::create_dir("assets");
@@ -39,12 +40,44 @@ macro_rules! file_setup {
      }
 }
 
+#[macro_export]
+#[cfg(debug_assertions)]
+macro_rules! log {
+    ($( $args:expr ),*) => { 
+        println!( $( $args ),* ); 
+    }
+}
+
+#[macro_export]
+#[cfg(debug_assertions)]
+macro_rules! log_warn {
+    ($( $args:expr ),*) => { 
+        println!( $( $args ).yellow(),* ); 
+    }
+}
+
+#[macro_export]
+#[cfg(debug_assertions)]
+macro_rules! log_alert {
+    ($( $args:expr ),*) => { 
+        println!( $( $args ).red(),* ); 
+    }
+}
+
+#[macro_export]
+#[cfg(debug_assertions)]
+macro_rules! log_green {
+    ($( $args:expr ),*) => { 
+        println!( $( $args ).green(),* ); 
+    }
+}
+
+
 impl Game {
 
     pub fn new(window: WindowData) -> App {
 
         file_setup!();
-        println!("is this actually updating?");
 
         let mut app = App::new();
 
