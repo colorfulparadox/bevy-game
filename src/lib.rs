@@ -60,12 +60,10 @@ impl Game {
 
         let path: &Path = Path::new("assets");
         if path.is_dir() {
-            println!("We have assets lets go!");
-        } else {
-            let result = fs::create_dir("assets");
-            result.ok();
-            println!("made assets dir!");
+            return;
         }
-
+        
+        let result = fs::create_dir("assets");
+        result.ok();
     }
 }
