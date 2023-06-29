@@ -25,7 +25,12 @@ impl Default for WindowData {
 pub struct Game;
 
 impl Game {
+
     pub fn new(window: WindowData) -> App {
+
+        #[cfg(debug_assertions)]
+        Game::file_setup();
+
         let mut app = App::new();
 
         App::new()
