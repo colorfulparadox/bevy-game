@@ -20,26 +20,30 @@ impl Default for WindowData {
     }
 }
 
-pub fn new_game(window: WindowData) -> App {
-    let app = App::new();
-    App::new()
-        .add_plugins(
-            DefaultPlugins
-                .set(ImagePlugin::default_nearest())
-                .set(AssetPlugin {
-                    watch_for_changes: true,
-                    ..default()
-                })
-                .set(WindowPlugin {
-                    primary_window: Some(Window {
-                        title: window.title.into(),
-                        resolution: (window.width, window.height).into(),
-                        resizable: window.resizeable,
+pub struct Game;
+
+impl Game {
+    pub fn new(window: WindowData) -> App {
+        let app = App::new();
+        App::new()
+            .add_plugins(
+                DefaultPlugins
+                    .set(ImagePlugin::default_nearest())
+                    .set(AssetPlugin {
+                        watch_for_changes: true,
                         ..default()
-                    }),
-                    ..default()
-                })
-                .build(),
-        );
-     app
+                    })
+                    .set(WindowPlugin {
+                        primary_window: Some(Window {
+                            title: window.title.into(),
+                            resolution: (window.width, window.height).into(),
+                            resizable: window.resizeable,
+                            ..default()
+                        }),
+                        ..default()
+                    })
+                    .build(),
+            );
+        app
+    }
 }
