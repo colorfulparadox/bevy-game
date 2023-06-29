@@ -24,8 +24,8 @@ impl Default for WindowData {
 
 pub struct Game;
 
-#[cfg(debug_assertions)]
-use colored::Colorize;
+//#[cfg(debug_assertions)]
+//use colored::Colorize;
 
 #[cfg(debug_assertions)]
 macro_rules! file_setup {
@@ -40,7 +40,7 @@ macro_rules! file_setup {
      }
 }
 
-#[macro_export]
+//#[macro_export]
 #[cfg(debug_assertions)]
 macro_rules! log {
     ($( $args:expr ),*) => { 
@@ -48,27 +48,27 @@ macro_rules! log {
     }
 }
 
-#[macro_export]
+//#[macro_export]
 #[cfg(debug_assertions)]
 macro_rules! log_warn {
     ($( $args:expr ),*) => { 
-        println!( $( $args ).yellow(),* ); 
+        println!( $( $args ),* ); 
     }
 }
 
-#[macro_export]
+//#[macro_export]
 #[cfg(debug_assertions)]
 macro_rules! log_alert {
     ($( $args:expr ),*) => { 
-        println!( $( $args ).red(),* ); 
+        println!( $( $args ),* ); 
     }
 }
 
-#[macro_export]
+//#[macro_export]
 #[cfg(debug_assertions)]
 macro_rules! log_green {
     ($( $args:expr ),*) => { 
-        println!( $( $args ).green(),* ); 
+        println!( $( $args ),* ); 
     }
 }
 
